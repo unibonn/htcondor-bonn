@@ -19,3 +19,11 @@ The following outline links to the various exercises of the course.
   <li><a href="./{{ exercise.url }}">{{ exercise.title }}</a></li>
 {% endfor %}
 </ol>
+
+### Explanation of common icons
+
+:exclamation: This marks a task.
+
+:bulb: This marks extra information, or things you may want to investigate to learn some more details.
+
+:leopard: This marks bonus tasks for those who are faster than their colleagues.

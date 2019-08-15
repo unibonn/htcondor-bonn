@@ -17,6 +17,8 @@ You will be logged out after 7200 seconds of inactivity.
 You requested 1 core(s), 512 MB RAM, 35 kB disk space.
 {% endhighlight %}
 
+The `append` parameter causes the given content to be appended to the job ClassAd. The special character `+` identifies this attribute as a custom attribute which, in our test cluster, selects the environment we want to use.
+
 In the test cluster, we offer three different environments:
 
 | Operating System   | Value of ContainerOS |
@@ -25,13 +27,16 @@ In the test cluster, we offer three different environments:
 | Scientific Linux 6 | SL6                  |
 | Ubuntu 18.04 LTS   | Ubuntu1804           |
 
+* * *
+
 :exclamation: Try to start an interactive job in each of them and check out your environment.
 
 :bulb: If you are affiliated with Linux, you may want to check which kernel version you see inside the job (`uname -a`) and run `lsb_release -a` or view the contents of the file `/etc/os-release`.
 
 
+* * *
 
-# Defining requirements
+## Defining requirements
 
 You may have noticed the line:
 {% highlight shell %}
@@ -39,5 +44,26 @@ You requested 1 core(s), 512 MB RAM, 35 kB disk space.
 {% endhighlight %}
 in the example above.
 
+These are default resource requests which can be configured as part of the HTCondor configuration on the submission machine. In case different resources are required, you should specify these.
+
+However, adding more and more parameters to `condor_submit -interactive` is not really feasible. To define your requests, it is easier to create a file containing these requests and hand that to `condor_submit`. In our course, we commonly use the file exension `jdl` to indicate the file is written in the `job description language` (which is basically just a collection of attributes being merged into the Job ClassAd).
+
+An example could be the following:
+
+{% highlight shell %}
+JobBatchName = SL6_interactive
++ContainerOS = "SL6"
+Request_cpus = 2
+Request_memory = 2 GB
+Request_disk = 100 MB
+Queue
+{% endhighlight %}
+
+:exclamation: Save this into a file of your choosing (for example, `SL6_interactive.jdl`) and submit it as shown here:
+{% highlight shell %}
+FIXME
+{% endhighlight %}
+
+:leopard: You may
 
 {% include footer_exercises.html %}
