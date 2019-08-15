@@ -1,5 +1,7 @@
 theme: jekyll-theme-hacker
 
+baseurl: /gridka-school-2019-htcondor
+
 show_downloads: true
 
 collections:

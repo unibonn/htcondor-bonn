@@ -16,7 +16,7 @@ The following outline links to the various exercises of the course.
 
 <ol>
 {% for exercise in site.exercises %}
-  <li><a href="./{{ exercise.url }}">{{ exercise.title }}</a></li>
+  <li><a href="{{ site.baseurl }}{{ exercise.url }}">{{ exercise.title }}</a></li>
 {% endfor %}
 </ol>
 

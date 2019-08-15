@@ -47,15 +47,15 @@
 
 <div id="post-nav">
     {% if prevPost.url %}
-    <a href="../../{{ prevPost.url }}">
+    <a href="{{ site.baseurl }}{{ prevPost.url }}">
         <span>&lt; Previous ({{ prevPost.title }})</span>
     </a>
     {% endif %}
     {% if nextPost.url %}
-    <a href="../../{{ nextPost.url }}">
+    <a href="{{ site.baseurl }}{{ nextPost.url }}">
         <span>Next ({{ nextPost.title }}) &gt;</span>
     </a>
     {% endif %}
 </div>
 
-[back to landing page](../../)
+[back to landing page]({{ site.baseurl}}/)

@@ -3,7 +3,7 @@ title: An interactive job
 ---
 # An interactive job
 
-As explained in the [presentation](../../presentation/presentation.pdf), HTCondor is most prominently used from a personal desktop machine (for example at your workplace / institute). Sadly, software is often not developed for the system you can (or want) to use on your desktop machine.
+As explained in the [presentation]({{ site.baseurl }}/presentation/presentation.pdf), HTCondor is most prominently used from a personal desktop machine (for example at your workplace / institute). Sadly, software is often not developed for the system you can (or want) to use on your desktop machine.
 
 To overcome this issue, containerization comes to the rescue and allows to select a different runtime environment for your computing job.
 Of course, you still need a way to interactively develop and test your program. This is the point at which an interactive job comes in.
