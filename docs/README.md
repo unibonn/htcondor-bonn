@@ -1,4 +1,4 @@
-## Introduction to HTCondor
+# Introduction to HTCondor
 
 This tutorial is a part of [GridKa School 2019](https://indico.scc.kit.edu/event/460/contributions/5480/) and will try to answer the question:
 
@@ -6,7 +6,7 @@ This tutorial is a part of [GridKa School 2019](https://indico.scc.kit.edu/event
 
 The documentation on this page is part of [this repository]({{site.github.repository_url}}) which also contains files used in the part of the course.
 
-### Structure
+## Structure
 
 The tutorial is started with an [introductory presentation](presentation/presentation.pdf) and complemented by this very documentation and files provided in the [repository]({{site.github.repository_url}}).
 
