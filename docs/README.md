@@ -14,4 +14,4 @@ The following outline links to the various exercises of the course.
 
 ### Outline
 
-1. [Submitting a first job](submit_1.md)
+1. [Submitting a first job](1_submit_first.md)
