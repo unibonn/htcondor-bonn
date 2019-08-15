@@ -14,4 +14,8 @@ The following outline links to the various exercises of the course.
 
 ### Outline
 
-1. [Submitting a first job](1_submit_first.md)
+<ol>
+{% for exercise in site.exercises %}
+  <li><a href="./{{ exercise.url }}">{{ exercise.title }}</a></li>
+{% endfor %}
+</ol>
