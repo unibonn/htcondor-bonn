@@ -29,9 +29,9 @@ In the test cluster, we offer three different environments:
 
 * * *
 
-:exclamation: Try to start an interactive job in each of them and check out your environment.
+> :exclamation: Try to start an interactive job in each of them and check out your environment.
 
-:bulb: If you are affiliated with Linux, you may want to check which kernel version you see inside the job (`uname -a`) and run `lsb_release -a` or view the contents of the file `/etc/os-release`.
+> :bulb: If you are affiliated with Linux, you may want to check which kernel version you see inside the job (`uname -a`) and run `lsb_release -a` or view the contents of the file `/etc/os-release`.
 
 
 * * *
@@ -43,6 +43,11 @@ You may have noticed the line:
 You requested 1 core(s), 512 MB RAM, 35 kB disk space.
 {% endhighlight %}
 in the example above.
+
+> :leopard: You may want to check out where this output is generated.
+> <details><summary>Hint 1</summary>It is <b>not</b> created by HTCondor itself, but in your environment.</details>
+> <details><summary>Hint 2</summary>Check out `/etc/profile.d`.</details>
+> <details><summary>Hint 3</summary>Check out `/etc/profile.d/12-resources_and_mt.sh`. How does it gather the information?</details>
 
 These are default resource requests which can be configured as part of the HTCondor configuration on the submission machine. In case different resources are required, you should specify these.
 
@@ -59,11 +64,15 @@ Request_disk = 100 MB
 Queue
 {% endhighlight %}
 
-:exclamation: Save this into a file of your choosing (for example, `SL6_interactive.jdl`) and submit it as shown here:
+> :exclamation: Save this into a file of your choosing (for example, `SL6_interactive.jdl`) and submit it as shown here:
 {% highlight shell %}
-FIXME
+$ condor_submit -interactive SL6_interactive.jdl
+Submitting job(s).
+1 job(s) submitted to cluster 40.
+Welcome to slot1_1@htcondor-t-wn-0!
+You requested 2 core(s), 2048 MB RAM, 102400 kB disk space.
 {% endhighlight %}
 
-:leopard: You may
+> :leopard: You may
 
 {% include footer_exercises.html %}
