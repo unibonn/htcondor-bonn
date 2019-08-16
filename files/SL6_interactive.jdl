@@ -1,0 +1,6 @@
+JobBatchName = SL6_interactive
++ContainerOS = "SL6"
+Request_cpus = 2
+Request_memory = 2 GB
+Request_disk = 100 MB
+Queue

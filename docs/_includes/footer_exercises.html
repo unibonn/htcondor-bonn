@@ -47,15 +47,19 @@
 
 <div id="post-nav">
     {% if prevPost.url %}
-    <a href="{{ site.baseurl }}{{ prevPost.url }}">
-        <span>&lt; Previous ({{ prevPost.title }})</span>
-    </a>
+    <div style="float: left;">
+        <a href="{{ site.baseurl }}{{ prevPost.url }}">
+            <span>&lt; Previous ({{ prevPost.title }})</span>
+        </a>
+    </div>
     {% endif %}
     {% if nextPost.url %}
-    <a href="{{ site.baseurl }}{{ nextPost.url }}">
-        <span>Next ({{ nextPost.title }}) &gt;</span>
-    </a>
+    <div style="float: right;">
+        <a href="{{ site.baseurl }}{{ nextPost.url }}">
+            <span>Next ({{ nextPost.title }}) &gt;</span>
+        </a>
+    </div>
     {% endif %}
 </div>
-
+<div style="clear: both;" /><br />
 [back to landing page]({{ site.baseurl}}/)
