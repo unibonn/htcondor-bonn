@@ -38,9 +38,15 @@ Welcome to slot1_1@htcondor-t-wn-0!
 You requested 2 core(s), 2048 MB RAM, 102400 kB disk space.
 {% endhighlight %}
 
-> :leopard: You may
+## Best practices
 
-| :+1: | HTCondor file transfer may be used to get credentials into the job (e.g. SSH keys). |
-| :-1: | Mismatched resource requests. |
+| :+1: | HTCondor file transfer may be used to get credentials into the job (e.g. SSH keys).[^1] |
+| :+1: | HTCondor will tell you about used resources after a job has finished[^2] |
+| :-1: | Mismatched resource requests lead to resource underuse or congestion (both are inefficient). This usually badly affects also other users' jobs! |
+| :-1: | A large number of jobs should be submitted in batch mode and not interactively. Commonly, computing centres reserve dedicated slots to guarantee availability of interactive resources. |
+| :-1: | Interactive jobs should not be left running excessively long - they are meant for debugging or interactive processing, and are not "login shells". |
+
+[^1]: Most clusters have a shared file system. However, permissions are usually more "loose" there, so placing credentials on it and securing access needs care.
+[^2]: An exception to that is (currently) the used swap space, if the cluster allows you to use swap.
 
 {% include footer_exercises.html %}
