@@ -75,4 +75,7 @@ You requested 2 core(s), 2048 MB RAM, 102400 kB disk space.
 
 > :leopard: You may
 
+| :+1: | HTCondor file transfer may be used to get credentials into the job (e.g. SSH keys). |
+| :-1: | Mismatched resource requests. |
+
 {% include footer_exercises.html %}
