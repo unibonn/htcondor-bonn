@@ -15,9 +15,18 @@ or use Cygwin.
 
 If you want X11 graphics (not required by the course), you may use Xming for example in combination with WSL or Cygwin.
 To make use of it, you may have to run:
-```shell
+{% highlight shell %}
 export DISPLAY=localhost:0.0
-```
+{% endhighlight %}
 in the terminal once before running `ssh -X`. 
+
+## Preparing your environment
+Several of the files mentioned in the course can be created manually (by copy-pasting from the page), but it is usually more easy to check out the repository.
+
+You can do so by running:
+{% highlight shell %}
+git clone https://github.com/olifre/gridka-school-2019-htcondor.git
+{% endhighlight %}
+The repository will then be availabe in the directory `gridka-school-2019-htcondor`. 
 
 {% include footer_exercises.html %}

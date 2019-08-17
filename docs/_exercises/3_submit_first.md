@@ -24,7 +24,7 @@ Error                   = logs/err.$(ClusterId).$(Process)
 Output                  = logs/out.$(ClusterId).$(Process)
 Log                     = logs/log.$(ClusterId).$(Process)
 
-+ConainerOS="CentOS7"
++ContainerOS="CentOS7"
 
 Queue
 {% endhighlight %}
