@@ -26,6 +26,10 @@ Log                     = logs/log.$(ClusterId).$(Process)
 
 +ContainerOS="CentOS7"
 
+Request_cpus = 2
+Request_memory = 2 GB
+Request_disk = 100 MB
+
 Queue
 {% endhighlight %}
 
@@ -54,14 +58,36 @@ env
 
 echo "Running processes:"
 ps faux
+
+echo "Sleeping a bit..."
+for num in {1..10}; do
+  echo "Sleep iteration ${num}/10..."
+  sleep 60;
+done
 {% endhighlight %}
 
 > :exclamation: Now, you can finally submit the job:
 {% highlight shell %}
 $ condor_submit CentOS7_simple.jdl
+Submitting job(s)
+ERROR: Invalid log file: "/home/student00/gridka-school-2019-htcondor/files/logs/log.44.0" (No such file or directory)
+{% endhighlight %}
+Please note that this fails!
+HTCondor usually performs a check whether the log files and other output files can be written before
+submitting the job. You can turn this off by adding `-disable` to the call to `condor_submit`, which speeds up submission - but then
+the jobs will go into `HOLD` state in case the files can not be written on the submit node. 
+
+So usually, you will want to fix the problem:
+{% highlight shell %}
+mkdir logs
+{% endhighlight %}
+Now, please try again:
+{% highlight shell %}
+$ condor_submit CentOS7_simple.jdl
 Submitting job(s).
-1 job(s) submitted to cluster 41.
+1 job(s) submitted to cluster 46.
 {% endhighlight %}
 
+> :exclamation: Now, you can investigate the job using `condor_q`. Check out the files inside the `logs` directory, and try to follow along the job output using `condor_tail -f clusterid`.
 
 {% include footer_exercises.html %}
