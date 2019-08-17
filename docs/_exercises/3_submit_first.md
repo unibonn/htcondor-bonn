@@ -12,7 +12,7 @@ We need two files:
 > :exclamation: Save the following into a file of your choosing or use the file `CentOS7_simple.jdl` from the repository.
 {% highlight shell %}
 Executable = environment-info.sh
-Arguments  =
+Arguments  = some Arguments for our program $(ClusterId) $(Process)
 Universe   = vanilla
 
 # Specify files to be transferred (please note that files on a shared filesystem should not be transferred!!!)
@@ -77,7 +77,7 @@ HTCondor usually performs a check whether the log files and other output files c
 submitting the job. You can turn this off by adding `-disable` to the call to `condor_submit`, which speeds up submission - but then
 the jobs will go into `HOLD` state in case the files can not be written on the submit node. 
 
-So usually, you will want to fix the problem:
+So you will want to fix the problem:
 {% highlight shell %}
 mkdir logs
 {% endhighlight %}
@@ -88,7 +88,12 @@ Submitting job(s).
 1 job(s) submitted to cluster 46.
 {% endhighlight %}
 
-> :exclamation: Now, you can investigate the job using `condor_q`. Check out the files inside the `logs` directory, and try to follow along the job output using `condor_tail -f clusterid`.
+> :exclamation: Now, you can investigate the job a bit. Some examples follow.
+
+1. Use `condor_q`.
+2. Check out some more details with `condor_q -long clusterid.process`.
+3. Check out the files inside the `logs` directory.
+4. Try to follow along the job output using `condor_tail -f clusterid`.
 
 > :question: Especially at this point, you are invited to ask questions about what you find!
 

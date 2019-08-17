@@ -1,5 +1,5 @@
 Executable = environment-info.sh
-Arguments  =
+Arguments  = some Arguments for our program $(ClusterId) $(Process)
 Universe   = vanilla
 
 # Specify files to be transferred (please note that files on a shared filesystem should not be transferred!!!)
