@@ -5,7 +5,7 @@ title: Submitting many jobs
 
 In this example, we will focus on how to get input files into our jobs, and how to collect output.
 
-Again, we need a file to describe our job, and an actual job payload. 
+Again, we need a file to describe our job, and an actual job payload.
 
 > :exclamation: Save the following into a file of your choosing or use the file `CentOS7_lotto.jdl` from the repository.
 {% highlight shell %}
