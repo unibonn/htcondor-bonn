@@ -54,7 +54,8 @@ done
 
 > :exclamation: Please check that the shell script is executable - if not, run `chmod +x check_lotto.sh`.
 
-> :exclamation: As you may have guessed, we are going to play a small lottery game here. Please create the directory `lotto_sheets` and prepare your lucky numbers in it.
+> :exclamation: As you may have guessed, we are going to play a small lottery game here. This simulates a weekly lottery, and 52 draws are done, a single one per job.
+> Please create the directory `lotto_sheets` and prepare your lucky numbers in it.
 > You should create at least one file with exactly 6 numbers (one per line) in it, and name it with the extension `.txt`. You can also create multiple files
 > if you have more than one set of lucky numbers. 
 
@@ -67,5 +68,14 @@ Submitting job(s)....................................................
 
 > :question: What is happening? Where do you expect to find files on your submit machine?
 
+## Check out your results
+Ignoring any special rules, you basically win something if at least 3 numbers were guessed correctly.
+Did you win something?
+
+> :exclamation: Check out your result files:
+{% highlight shell %}
+cat lotto_results/*.txt | sort -n | uniq -c
+{% endhighlight %}
+> :question: What exactly does this command show? If in doubt, please ask!
 
 {% include footer_exercises.html %}
