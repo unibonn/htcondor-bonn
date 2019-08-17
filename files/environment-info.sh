@@ -22,6 +22,9 @@ env
 echo "Running processes:"
 ps faux
 
+echo "Directory content:"
+ls
+
 echo "Sleeping a bit..."
 for num in {1..10}; do
   echo "Sleep iteration ${num}/10..."

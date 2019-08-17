@@ -59,12 +59,19 @@ env
 echo "Running processes:"
 ps faux
 
+echo "Directory content:"
+ls
+
 echo "Sleeping a bit..."
 for num in {1..10}; do
   echo "Sleep iteration ${num}/10..."
   sleep 60;
 done
 {% endhighlight %}
+
+> :exclamation: Please check that the shell script is executable - if not, run `chmod +x environment-info.sh`.
+
+> :exclamation: Usually, you should test your code before. If a special environment is needed, you can do that in an interactive job, before firing off many jobs. In our case, just test the script on the submit node by running `./environment-info.sh` and check what happens.
 
 > :exclamation: Now, you can finally submit the job:
 {% highlight shell %}
@@ -96,5 +103,26 @@ Submitting job(s).
 4. Try to follow along the job output using `condor_tail -f clusterid`.
 
 > :question: Especially at this point, you are invited to ask questions about what you find!
+
+* * *
+
+## Removing jobs
+
+> :bulb: Take note of the possibility to remove jobs, for example when you are finished with your investigations or have found a bug and want to re-submit!
+
+To remove a full cluster of jobs:
+{% highlight shell %}
+condor_rm clusterid
+{% endhighlight %}
+To remove a single job:
+{% highlight shell %}
+condor_rm clusterid.process
+{% endhighlight %}
+To remove all your jobs:
+{% highlight shell %}
+condor_rm username
+{% endhighlight %}
+
+> :exclamation: Submit another one of your test jobs and remove it. How long does it take? Check the status with `condor_q` during the process.
 
 {% include footer_exercises.html %}
