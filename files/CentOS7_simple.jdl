@@ -1,0 +1,16 @@
+Executable = environment-info.sh
+Arguments  =
+Universe   = vanilla
+
+# Specify files to be transferred (please note that files on a shared filesystem should not be transferred!!!)
+# Should executable be transferred from the submit node to the job working directory on the worker node?
+Transfer_executable     = True
+
+Error                   = logs/err.$(ClusterId).$(Process)
+#Input                  = input/in.$(ClusterId).$(Process)
+Output                  = logs/out.$(ClusterId).$(Process)
+Log                     = logs/log.$(ClusterId).$(Process)
+
++ConainerOS="CentOS7"
+
+Queue

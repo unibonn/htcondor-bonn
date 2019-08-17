@@ -38,6 +38,8 @@ Welcome to slot1_1@htcondor-t-wn-0!
 You requested 2 core(s), 2048 MB RAM, 102400 kB disk space.
 {% endhighlight %}
 
+> :leopard: If you have not done so yet, you may want to check out `~/.job.ad` inside the job.
+
 ## Best practices
 
 | :+1: | HTCondor file transfer may be used to get credentials into the job (e.g. SSH keys).[^1] |
