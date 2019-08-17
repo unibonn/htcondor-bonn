@@ -90,4 +90,6 @@ Submitting job(s).
 
 > :exclamation: Now, you can investigate the job using `condor_q`. Check out the files inside the `logs` directory, and try to follow along the job output using `condor_tail -f clusterid`.
 
+> :question: Especially at this point, you are invited to ask questions about what you find!
+
 {% include footer_exercises.html %}

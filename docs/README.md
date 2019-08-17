@@ -26,6 +26,8 @@ The following outline links to the various exercises of the course.
 
 :bulb: This marks extra information, or things you may want to investigate to learn some more details.
 
+:question: This highlights a good point to ask questions if something is unclear. Of course, you can ask at any point!
+
 :leopard: This marks bonus tasks for those who are faster than their colleagues.
 
 :+1: Good practice.
