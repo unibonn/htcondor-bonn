@@ -40,6 +40,15 @@ You requested 2 core(s), 2048 MB RAM, 102400 kB disk space.
 
 > :leopard: If you have not done so yet, you may want to check out `~/.job.ad` inside the job.
 
+## Priorities
+
+In the default configuration, HTCondor is using a fair-share algorithm and assigning ressources by priorities based on past usage.
+> :exclamation: Have a look at the output of:
+{% highlight shell %}
+condor_userprio -allusers -all
+{% endhighlight %}
+You may want to check this again later during the course.
+
 ## Best practices
 
 | :+1: | HTCondor file transfer may be used to get credentials into the job (e.g. SSH keys).[^1] |
