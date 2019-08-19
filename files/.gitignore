@@ -1,5 +1,8 @@
 logs/
 lotto_sheets/
 lotto_results/
+render_results_*/
 *.mp4
+*.png
 *.dag.*
+
