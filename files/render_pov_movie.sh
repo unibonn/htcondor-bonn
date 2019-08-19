@@ -5,8 +5,9 @@ source /etc/profile
 SCENE=$1
 FRAME=$2
 
-mkdir render_results_${SCENE}
+RESULTDIR=render_results_${SCENE}
+
+mkdir ${RESULTDIR}
 cd ${SCENE}
 povray +V +SF${FRAME} +EF${FRAME} render_movie.ini
-mv video*.png ../render_results_${SCENE}/
-
+mv video*.png ../${RESULTDIR}
