@@ -1,8 +1,12 @@
-JobBatchName = Ubuntu1804_render_movie_frames
+JobBatchName = Ubuntu1804_render_scene
 +ContainerOS = "Ubuntu1804"
 
-Scene=mini_demo
-#Scene=dice
+if defined Scene
+	Scene=$(Scene)
+else
+	Scene=mini_demo
+	#Scene="dice"
+endif
 
 Executable=render_pov_single.sh
 Arguments = $(Scene) $(Process)

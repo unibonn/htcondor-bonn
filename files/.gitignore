@@ -1,3 +1,5 @@
 logs/
 lotto_sheets/
 lotto_results/
+*.mp4
+*.dag.*
