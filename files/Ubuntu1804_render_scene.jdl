@@ -4,11 +4,11 @@ JobBatchName = Ubuntu1804_render_movie_frames
 Scene=mini_demo
 #Scene=dice
 
-Executable=render_pov_movie.sh
+Executable=render_pov_single.sh
 Arguments = $(Scene) $(Process)
 
 Transfer_input_files = povray/$(Scene)
-Transfer_output_files = render_results_$(Scene)
+Transfer_output_files = $(Scene).png
 
 Error                   = logs/err.$(ClusterId).$(Process)
 Output                  = logs/out.$(ClusterId).$(Process)
