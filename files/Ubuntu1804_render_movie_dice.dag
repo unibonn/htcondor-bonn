@@ -1,0 +1,10 @@
+Job render_frames Ubuntu1804_render_movie_frames.jdl
+Job make_video Ubuntu1804_create_movie.jdl
+
+#VARS render_frames Scene="mini_demo"
+#VARS make_video Scene="mini_demo"
+
+VARS render_frames Scene="dice"
+VARS make_video Scene="dice"
+
+PARENT render_frames CHILD make_video
