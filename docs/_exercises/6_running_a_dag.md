@@ -21,12 +21,47 @@ to speed up the rendering, and the actual animation.
 
 > :exclamation: Save the following into a file of your choosing or use the file `Ubuntu1804_render_movie_frames.jdl` from the repository.
 {% highlight shell %}
+JobBatchName = Ubuntu1804_render_movie_frames
++ContainerOS = "Ubuntu1804"
 
+if defined Scene
+        Scene=$(Scene)
+else
+        Scene=mini_demo
+        #Scene="dice"
+endif
+
+Executable=render_pov_movie.sh
+Arguments = $(Scene) $(Process)
+
+Transfer_input_files = povray/$(Scene)
+Transfer_output_files = render_results_$(Scene)
+
+Error                   = logs/err.$(ClusterId).$(Process)
+Output                  = logs/out.$(ClusterId).$(Process)
+Log                     = logs/log.$(ClusterId).$(Process)
+
+Request_cpus = 1
+Request_memory = 500 MB
+Request_disk = 100 MB
+Queue 100
 {% endhighlight %}
 
 > :exclamation: Save the following into a file of your choosing or use the file `render_pov_movie.sh` from the repository.
 {% highlight shell %}
+#!/bin/bash
 
+source /etc/profile
+
+SCENE=$1
+FRAME=$2
+
+RESULTDIR=render_results_${SCENE}
+
+mkdir ${RESULTDIR}
+cd ${SCENE}
+povray +V +SF${FRAME} +EF${FRAME} render_movie.ini
+mv video*.png ../${RESULTDIR}
 {% endhighlight %}
 
 > :exclamation: Please check that the shell script is executable - if not, run `chmod +x render_pov_movie.sh`.
@@ -35,12 +70,43 @@ to speed up the rendering, and the actual animation.
 
 > :exclamation: Save the following into a file of your choosing or use the file `Ubuntu1804_create_movie.jdl` from the repository.
 {% highlight shell %}
+JobBatchName = Ubuntu1804_create_movie
++ContainerOS = "Ubuntu1804"
 
+if defined Scene
+        Scene=$(Scene)
+else
+        Scene=mini_demo
+        #Scene="dice"
+endif
+
+Executable=create_pov_movie.sh
+Arguments = $(Scene) $(Process)
+
+Transfer_input_files = render_results_$(Scene)
+Transfer_output_files = $(Scene).mp4
+
+Error                   = logs/err.$(ClusterId).$(Process)
+Output                  = logs/out.$(ClusterId).$(Process)
+Log                     = logs/log.$(ClusterId).$(Process)
+
+Request_cpus = 4
+Request_memory = 500 MB
+Request_disk = 100 MB
+Queue 1
 {% endhighlight %}
 
 > :exclamation: Save the following into a file of your choosing or use the file `create_pov_movie.sh` from the repository.
 {% highlight shell %}
+#!/bin/bash
 
+source /etc/profile
+
+SCENE=$1
+
+cd render_results_${SCENE}
+ffmpeg -r 10 -f image2 -i video%03d.png -vcodec libx264 -crf 25 -pix_fmt yuv420p -threads 4 ${SCENE}.mp4
+mv ${SCENE}.mp4 ../
 {% endhighlight %}
 
 > :exclamation: Please check that the shell script is executable - if not, run `chmod +x create_pov_movie.sh`.
@@ -55,12 +121,24 @@ For this reason, two alternative DAG files are prepared:
 
 > :exclamation: The first file has the following content and is available from the repository under the name `Ubuntu1804_render_movie_dice.dag`.
 {% highlight shell %}
+Job render_frames Ubuntu1804_render_movie_frames.jdl
+Job make_video Ubuntu1804_create_movie.jdl
 
+VARS render_frames Scene="dice"
+VARS make_video Scene="dice"
+
+PARENT render_frames CHILD make_video
 {% endhighlight %}
 
 > :exclamation: The second file has the following content and is available from the repository under the name `Ubuntu1804_render_movie_mini_demo.dag`.
 {% highlight shell %}
+Job render_frames Ubuntu1804_render_movie_frames.jdl
+Job make_video Ubuntu1804_create_movie.jdl
 
+VARS render_frames Scene="mini_demo"
+VARS make_video Scene="mini_demo"
+
+PARENT render_frames CHILD make_video
 {% endhighlight %}
 
 > :question: Please choose one of the two files. Can you explain the differences between the two?
@@ -68,8 +146,18 @@ For this reason, two alternative DAG files are prepared:
 
 > :exclamation: Submit the job as follows and check what happens:
 {% highlight shell %}
-$ condor_submit_dag
-FIXME
+$ condor_submit_dag Ubuntu1804_render_movie_mini_demo.dag
+
+-----------------------------------------------------------------------
+File for submitting this DAG to HTCondor           : Ubuntu1804_render_movie_mini_demo.dag.condor.sub
+Log of DAGMan debugging messages                 : Ubuntu1804_render_movie_mini_demo.dag.dagman.out
+Log of HTCondor library output                     : Ubuntu1804_render_movie_mini_demo.dag.lib.out
+Log of HTCondor library error messages             : Ubuntu1804_render_movie_mini_demo.dag.lib.err
+Log of the life of condor_dagman itself          : Ubuntu1804_render_movie_mini_demo.dag.dagman.log
+
+Submitting job(s).
+1 job(s) submitted to cluster 99.
+-----------------------------------------------------------------------
 {% endhighlight %}
 
 > :question: What is happening? Where do you expect to find files on your submit machine?
@@ -88,10 +176,11 @@ condor_status -compact
 condor_userprio
 condor_userprio -allusers -all
 {% endhighlight %}
+> :exclamation: Also check out the log file produced by dagman!
 
 > :leopard: Check out the man pages or the HTCondor documentation - can you find more interesting parameters?
 
-> :leopard: You may want to play with priorities and resource requests for jobs which are still waiting in the queue (you can only rank your own jobs against each other!). Helpful commands could be (for cluster ID 72):
+> :leopard: You may want to play with priorities and resource requests for jobs which are still waiting in the queue (you can only rank your own jobs against each other!). Helpful commands could be (for a job id `72.0` and cluster id `72`):
 {% highlight shell %}
 condor_q -af:hj JobPrio JobStatus
 condor_prio -p 10 72.0

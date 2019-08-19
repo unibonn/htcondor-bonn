@@ -37,12 +37,39 @@ Again, we need a file to describe our job, and an actual job payload. We will us
 
 > :exclamation: Save the following into a file of your choosing or use the file `Ubuntu1804_render_scenes.jdl` from the repository.
 {% highlight shell %}
-FIXME
+JobBatchName = Ubuntu1804_render_scenes
++ContainerOS = "Ubuntu1804"
+
+Scene = $Fdb(ScenePath)
+
+Executable=render_pov_single.sh
+Arguments = $(Scene)
+
+Transfer_input_files = povray/$(Scene)
+Transfer_output_files = $(Scene).png
+
+Error                   = logs/err.$(ClusterId).$(Process)
+Output                  = logs/out.$(ClusterId).$(Process)
+Log                     = logs/log.$(ClusterId).$(Process)
+
+Request_cpus = 4
+Request_memory = 1000 MB
+Request_disk = 100 MB
+
+Queue ScenePath matching dirs (povray/*)
 {% endhighlight %}
 
 > :exclamation: Save the following into a file of your choosing or use the file `render_pov_single.sh` from the repository.
 {% highlight shell %}
-FIXME
+#!/bin/bash
+
+source /etc/profile
+
+SCENE=$1
+
+cd ${SCENE}
+povray +V render.ini
+mv ${SCENE}.png ..
 {% endhighlight %}
 
 > :exclamation: Please check that the shell script is executable - if not, run `chmod +x render_pov_single.sh`.
@@ -61,19 +88,28 @@ As you might guess, `$Something()` is the syntax of a built-in function. You wil
 > :exclamation: As soon as everything is understood and you know what to expect, it is time to submit the jobs:
 {% highlight shell %}
 $ condor_submit Ubuntu1804_render_scenes.jdl
-FIXME
+Submitting job(s)..
+2 job(s) submitted to cluster 98.
 {% endhighlight %}
 
-These jobs may run for a little while, so let's take the time to check on them! POV-Ray produces some progress output on `STDERR`. You can access that live from your submit machine using:
+These jobs may run for a little while, so let's take the time to check on them! POV-Ray produces some progress output on `STDERR`. You can access that live from your submit machine using (with `98.0` being the first job's id):
 {% highlight shell %}
-condor_tail -no-stdout -stderr -f 66.0
-
-FIXME
+$ condor_tail -no-stdout -stderr -f 98.0
+Rendered 105472 of 480000 pixels (21%)
+{% endhighlight %}
+You can also ask for more output with:
+{% highlight shell %}
+$ condor_tail -no-stdout -stderr -maxbytes 100000 -f 98.0
+...
+Rendered 105472 of 480000 pixels (21%)
 {% endhighlight %}
 
 You can also check the `log` file of the job, and use `condor_q` to check resource usage:
 {% highlight shell %}
 $ condor_q -af:hj Cmd ResidentSetSize_RAW RequestMemory RequestCPUs DiskUsage_RAW RequestDisk Owner RemoteHost
+ ID      Cmd                                                                    ResidentSetSize_RAW RequestMemory RequestCPUs DiskUsage_RAW RequestDisk Owner     RemoteHost             
+  98.0   /home/student00/gridka-school-2019-htcondor/files/render_pov_single.sh undefined           1000          4           7             102400      student00 slot1_1@htcondor-t-wn-0
+  98.1   /home/student00/gridka-school-2019-htcondor/files/render_pov_single.sh undefined           1000          4           53064         102400      student00 undefined
 {% endhighlight %}
 
 > :exclamation: Check out status and resource consumption of those jobs. Do they match with the requests formulated in the job description?
