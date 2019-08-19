@@ -83,6 +83,47 @@ As soon as the jobs have finished, you should find two new image files in your s
 The best way to look at them is to copy them to your local machine (on Linux or MacOS X, use `scp` or `rsync`, on Windows, either use the same commands in Windows Subsystem for Linux (WSL),
 or use e.g. WinSCP). Once they have arrived, use a normal image viewer. 
 
+## Queueing with a complex set of parameters
+
+Finally, you may encounter very complex analysis tools in your scientific career which need a lot of configuration parameters.
+We don't provide a hands-on example here, since the possibilities are endless, but instead, we present an example snippet of a JDL file and configuration file
+to queue a complex set of jobs. At this point, it is important to remember about the possibilities you are granted by HTCondor -
+an actual implementation will always be specific for the analysis tool you are using.
+
+Consider the following lines from a JDL:
+{% highlight shell %}
+Executable = myWrapperForAComplexAnalysisTool.sh
+Arguments  = $(Process) $(INPUT_FOLDER) $(DATASETS) $(OUTPUT_FOLDER) $(MIN_CONFIDENCE)
+
+if $(Debugging)
+  slice = [1:]
+  Arguments = -v $(Arguments)
+endif
+
+# Submit jobs as defined in input file
+Queue INPUT_FOLDER DATASETS OUTPUT_FOLDER MIN_CONFIDENCE from $(slice) list_of_tasks.txt
+{% endhighlight %}
+and the following `lists_of_tasks.txt` accompanying it:
+{% highlight shell %}
+/clusterfs/user/myself/input/HIGGS/ AOD.07709524._000062.pool.root.1;AOD.07709524._000063.pool.root.1;AOD.07709524._000064.pool.root.1 /cephfs/user/freyermu/output/HIGGS/ 0.23
+/clusterfs/user/myself/input/HIGGS/ AOD.07709524._000023.pool.root.1;AOD.07709524._000024.pool.root.1;AOD.07709524._000025.pool.root.1 /cephfs/user/freyermu/output/HIGGS/ 0.13
+# ...
+{% endhighlight %}
+The several "columns" (separated by spaces) are identified as the variable names passed to the `Queue` command.
+Note that the `DATASETS` column contains a list of datasets separated by `;` which may for example be parsed by the wrapper script or the analysis software.
+This may for example be helpful if job runtime would otherwise be very short, and the actual setup / teardown phase would take long compared to the job runtime.
+Examples for necessary, but heavy setup / teardown could be:
+* Condor file transfer of large / huge number of input files
+* Extraction of the actual software (for example, it might be stored as a tarball on a cluster file system, and be extracted on scratch space for actual use, since cluster file systems scale bad with many small files)
+* Cleanup of the job scratch directory (this also takes time!)
+* Necessary cache filling, software startup time etc.
+
+:question: Can you follow along the example, and understand all parts of it? For example, what happens when you would name the full JDL file `analysis.jdl` and submit as follows?
+{% highlight shell %}
+condor_submit 'Debugging=true' analysis.jdl
+{% endhighlight %}
+:question: Do you have an example use case in mind? Feel free to ask questions!
+
 [^1]: A very much improved online documentation is part of the HTCondor 8.8 series.
 
 {% include footer_exercises.html %}
