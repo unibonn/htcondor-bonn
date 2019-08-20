@@ -144,6 +144,11 @@ PARENT render_frames CHILD make_video
 > :question: Please choose one of the two files. Can you explain the differences between the two?
 > If it is not clear to you how the files interact, now is the right time to ask!
 
+> :leopard: There are other interesting functionalities of DAGMAN you may want to check out.
+> For example, you can use `Retry` to automatically retry a failed node a given number of times, or `PRIORITY` to give a job a higher priority than other jobs in the same DAG.
+> Another helpful feature is `-maxidle 50` as parameter to `condor_submit_dag` to limit the number of maximum idle jobs in the queue
+> (i.e. DAGMAN takes care to submit jobs slowly, making sure the idle queue is never too full). You could also put a number of maximum total jobs in any state at a time.
+
 > :exclamation: Submit the job as follows and check what happens:
 {% highlight shell %}
 $ condor_submit_dag Ubuntu1804_render_movie_mini_demo.dag
@@ -197,5 +202,9 @@ condor_qedit 72 -constraint 'JobStatus == 1' RequestMemory 400 RequestCpus 1
 
 If all went well, you should find `render_results` and a final `.mp4` movie file. Copy them to your local machine to watch them.
 How does the quality compare to the still images we rendered before?
+
+> :leopard: If you are the first to arrive here, you may want to play a bit more with DAGs. You could, for example, render the other movie, but first intentionally "break" the `make_video` job,
+> e.g. by editing the shell script and making it return a bad exit status (`exit 1`) before doing anything.
+> How does DAGMAN react to this (check the logs)? Can you continue the DAG from where it left off after "fixing" the shell script again by reverting it to the original state?
 
 {% include footer_exercises.html %}

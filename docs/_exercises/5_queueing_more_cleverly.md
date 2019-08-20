@@ -112,7 +112,7 @@ $ condor_q -af:hj Cmd ResidentSetSize_RAW RequestMemory RequestCPUs DiskUsage_RA
   98.1   /home/student00/gridka-school-2019-htcondor/files/render_pov_single.sh undefined           1000          4           53064         102400      student00 undefined
 {% endhighlight %}
 
-> :exclamation: Check out status and resource consumption of those jobs. Do they match with the requests formulated in the job description?
+> :exclamation: Check out status and resource consumption of those jobs. Do they match with the requests formulated in the job description? What about the units?
 
 If a job does not start, you may also want to check out (for job id `98.0`):
 {% highlight shell %}
