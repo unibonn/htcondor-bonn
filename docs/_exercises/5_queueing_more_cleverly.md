@@ -76,7 +76,7 @@ mv ${SCENE}.png ..
 
 > :exclamation: First, take a look at the job description file. Can you understand how it works? Some helpful pointers follow.
 
-In general, fi syntax is unclear, you may want to check out the HTCondor documentation.
+In general, if the syntax is unclear, you may want to check out the HTCondor documentation.
 In the course, we are using version `8.6.13` (there are still bugs in more recent versions concerning execution of Singularity containers). You can check that with `condor_q -version`.
 
 For example, to get an explanation on what the strange magic line `Scene = $Fdb(ScenePath)` is doing, it is best to start from the [HTCondor web page](https://research.cs.wisc.edu/htcondor/),
@@ -113,6 +113,11 @@ $ condor_q -af:hj Cmd ResidentSetSize_RAW RequestMemory RequestCPUs DiskUsage_RA
 {% endhighlight %}
 
 > :exclamation: Check out status and resource consumption of those jobs. Do they match with the requests formulated in the job description?
+
+If a job does not start, you may also want to check out (for job id `98.0`):
+{% highlight shell %}
+$ condor_q -better-analyze 98.0
+{% endhighlight %}
 
 ## Check out your results
 As soon as the jobs have finished, you should find two new image files in your submit directory.
