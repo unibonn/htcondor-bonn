@@ -125,7 +125,6 @@ The best way to look at them is to copy them to your local machine (on Linux or 
 or use e.g. WinSCP). Once they have arrived, use a normal image viewer. 
 
 ## Queueing with a complex set of parameters
-
 Finally, you may encounter very complex analysis tools in your scientific career which need a lot of configuration parameters.
 We don't provide a hands-on example here, since the possibilities are endless, but instead, we present an example snippet of a JDL file and configuration file
 to queue a complex set of jobs. At this point, it is important to remember about the possibilities you are granted by HTCondor -
@@ -159,7 +158,7 @@ Examples for necessary, but heavy setup / teardown could be:
 * Cleanup of the job scratch directory (this also takes time!)
 * Necessary cache filling, software startup time etc.
 
-:question: Can you follow along the example, and understand all parts of it? For example, what happens when you would name the full JDL file `analysis.jdl` and submit as follows?
+:question: Can you follow along the example, and understand all parts of it? For example, what would happen if you would name the full JDL file `analysis.jdl` and submit as follows?
 {% highlight shell %}
 condor_submit 'Debugging=true' analysis.jdl
 {% endhighlight %}
