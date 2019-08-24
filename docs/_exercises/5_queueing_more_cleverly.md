@@ -45,7 +45,7 @@ Scene = $Fdb(ScenePath)
 Executable=render_pov_single.sh
 Arguments = $(Scene)
 
-Transfer_input_files = $(ScenePath)
+Transfer_input_files = povray/$(Scene)
 Transfer_output_files = $(Scene).png
 
 Error                   = logs/err.$(ClusterId).$(Process)
