@@ -52,7 +52,7 @@ Queue 100
 #!/bin/bash
 
 source /etc/profile
-
+set -e
 SCENE=$1
 FRAME=$2
 
@@ -101,7 +101,7 @@ Queue 1
 #!/bin/bash
 
 source /etc/profile
-
+set -e
 SCENE=$1
 
 cd render_results_${SCENE}

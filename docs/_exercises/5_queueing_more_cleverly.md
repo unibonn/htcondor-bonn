@@ -64,7 +64,7 @@ Queue ScenePath matching dirs (povray/*)
 #!/bin/bash
 
 source /etc/profile
-
+set -e
 SCENE=$1
 
 cd ${SCENE}

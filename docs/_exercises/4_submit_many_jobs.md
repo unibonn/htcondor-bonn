@@ -37,7 +37,7 @@ Queue 52
 {% highlight shell %}
 #!/bin/bash
 source /etc/profile
-
+set -e
 CLUSTER_ID=$1
 
 mkdir lotto_results

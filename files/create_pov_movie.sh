@@ -1,7 +1,7 @@
 #!/bin/bash
 
 source /etc/profile
-
+set -e
 SCENE=$1
 
 cd render_results_${SCENE}
