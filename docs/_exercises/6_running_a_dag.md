@@ -207,4 +207,9 @@ How does the quality compare to the still images we rendered before?
 > e.g. by editing the shell script and making it return a bad exit status (`exit 1`) before doing anything.
 > How does DAGMAN react to this (check the logs)? Can you continue the DAG from where it left off after "fixing" the shell script again by reverting it to the original state?
 
+> :leopard: Still there? You may want to check if there are free cluster resources and, if so, improve the quality of the rendering and re-render.
+> You can check and adapt the render settings in the corresponding `.ini` file. Note that quality setting `9` takes significantly longer than any lower setting.
+> For the `mini_demo` scene, you will also find that two different POV-Ray files are used. Check out the differences using `diff` and choose some settings in between!
+> During re-rendering, remember to also check `condor_userprio` to see how priorities are evolving.
+
 {% include footer_exercises.html %}
