@@ -56,8 +56,8 @@ done
 
 > :exclamation: As you may have guessed, we are going to play a small lottery game here. This simulates a weekly lottery, and 52 draws are done, a single one per job.
 > Please create the directory `lotto_sheets` and prepare your lucky numbers in it.
-> You should create at least one file with exactly 6 numbers (one per line) in it, and name it with the extension `.txt`. You can also create multiple files
-> if you have more than one set of lucky numbers. 
+> You should create at least one file with exactly 6 numbers (one per line) in it. The numbers should range between 1 and 49.
+> Name the file with the extension `.txt`. You can also create multiple files if you have more than one set of lucky numbers.
 
 > :exclamation: Submit the job as follows and check what happens:
 {% highlight shell %}
