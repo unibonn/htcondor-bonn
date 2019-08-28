@@ -100,7 +100,7 @@ Submitting job(s).
 1. Use `condor_q`.
 2. Check out some more details with `condor_q -long clusterid.process`.
 3. Check out the files inside the `logs` directory.
-4. Try to follow along the job output using `condor_tail -f clusterid`.
+4. Try to follow along the job output using `condor_tail -f clusterid.process`.
 
 > :question: Especially at this point, you are invited to ask questions about what you find!
 
