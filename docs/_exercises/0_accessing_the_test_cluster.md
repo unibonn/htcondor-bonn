@@ -31,6 +31,6 @@ You can do so by running:
 {% highlight shell %}
 git clone https://github.com/olifre/gridka-school-2019-htcondor.git
 {% endhighlight %}
-The repository will then be availabe in the directory `gridka-school-2019-htcondor`. 
+The repository will then be available in the directory `gridka-school-2019-htcondor`.
 
 {% include footer_exercises.html %}
