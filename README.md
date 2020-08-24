@@ -1,7 +1,7 @@
 # Introduction to HTCondor
 
 This tutorial is mostly a generic HTCondor introduction with some site-specifics for Uni Bonn.
-It originated from a tutorial given at GridKa School 2019 [GridKa School 2019](https://indico.scc.kit.edu/event/460/contributions/5480/) and will try to answer the question:
+It originated from a tutorial given at [GridKa School 2019](https://indico.scc.kit.edu/event/460/contributions/5480/) and will try to answer the question:
 
 > How to distribute your compute tasks and get results with high performance, keeping machines and site admins joyful?
 
