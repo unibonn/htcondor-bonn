@@ -77,7 +77,7 @@ done
 {% highlight shell %}
 $ condor_submit CentOS7_simple.jdl
 Submitting job(s)
-ERROR: Invalid log file: "/home/student00/gridka-school-2019-htcondor/files/logs/log.44.0" (No such file or directory)
+ERROR: Invalid log file: "/home/student00/htcondor-bonn/files/logs/log.44.0" (No such file or directory)
 {% endhighlight %}
 Please note that this fails!
 HTCondor usually performs a check whether the log files and other output files can be written before

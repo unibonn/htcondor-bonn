@@ -29,8 +29,8 @@ Several of the files mentioned in the course can be created manually (by copy-pa
 
 You can do so by running:
 {% highlight shell %}
-git clone https://github.com/olifre/gridka-school-2019-htcondor.git
+git clone https://github.com/unibonn/htcondor-bonn.git
 {% endhighlight %}
-The repository will then be available in the directory `gridka-school-2019-htcondor`.
+The repository will then be available in the directory `htcondor-bonn`.
 
 {% include footer_exercises.html %}

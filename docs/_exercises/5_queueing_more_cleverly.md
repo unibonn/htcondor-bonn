@@ -108,8 +108,8 @@ You can also check the `log` file of the job, and use `condor_q` to check resour
 {% highlight shell %}
 $ condor_q -af:hj Cmd ResidentSetSize_RAW RequestMemory RequestCPUs DiskUsage_RAW RequestDisk Owner RemoteHost
  ID      Cmd                                                                    ResidentSetSize_RAW RequestMemory RequestCPUs DiskUsage_RAW RequestDisk Owner     RemoteHost             
-  98.0   /home/student00/gridka-school-2019-htcondor/files/render_pov_single.sh undefined           1000          4           7             102400      student00 slot1_1@htcondor-t-wn-0
-  98.1   /home/student00/gridka-school-2019-htcondor/files/render_pov_single.sh undefined           1000          4           53064         102400      student00 undefined
+  98.0   /home/student00/htcondor-bonn/files/render_pov_single.sh               undefined           1000          4           7             102400      student00 slot1_1@htcondor-t-wn-0
+  98.1   /home/student00/htcondor-bonn/files/render_pov_single.sh               undefined           1000          4           53064         102400      student00 undefined
 {% endhighlight %}
 
 > :exclamation: Check out status and resource consumption of those jobs. Do they match with the requests formulated in the job description? What about the units?
