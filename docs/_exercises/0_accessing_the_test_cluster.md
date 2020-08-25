@@ -1,18 +1,17 @@
 ---
 title: Accessing the test cluster
 ---
-# Accessing the test cluster
+# Accessing the cluster
 
-The test cluster holds several submission nodes, a central manager and worker nodes. You will have received a username, password and a host name in the course
-which you can use for logging in via SSH. 
+All desktop nodes are submission nodes. Additionally, we operate two central managers in a high availability setup and many worker nodes. You will have a "Uni-ID", password and know how to access a desktop machine via SSH when arriving here.
 
-On Linux and MacOS X, an OpenSSH client is usually installed by default.
+On Linux and macOS X, an OpenSSH client is usually installed by default.
 In case you want X11 graphics (not required by the course), you need XQuartz on the Mac and use `ssh -X`.
 In the course, it will also be necessary to copy files to your machine to look at them (pictures, videos). For this, you can use `scp` or `rsync`.
 
 ## Windows
 On Windows, you can either use PUTTY, install a Linux distribution using the Windows Subsystem for Linux (WSL) via the Store,
-or use Cygwin. 
+or use Cygwin. With recent Windows 10 releases, you will also have an SSH client readily available on the command line which you can use. You may also be interested in installing the "Windows Terminal" app via the store.
 
 If you want X11 graphics (not required by the course), you may use Xming for example in combination with WSL or Cygwin.
 To make use of it, you may have to run:
