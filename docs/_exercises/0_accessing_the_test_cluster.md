@@ -1,5 +1,5 @@
 ---
-title: Accessing the test cluster
+title: Accessing the cluster
 ---
 # Accessing the cluster
 
