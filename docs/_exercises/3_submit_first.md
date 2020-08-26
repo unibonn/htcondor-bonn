@@ -9,7 +9,7 @@ In our first simple example, we will go with a batch script which shows some inf
 
 We need two files:
 
-> :exclamation: Save the following into a file of your choosing or use the file `CentOS7_simple.jdl` from the repository.
+> :exclamation: Save the following into a file of your choosing or use the file `CentOS8_simple.jdl` from the repository.
 {% highlight shell %}
 Executable = environment-info.sh
 Arguments  = some Arguments for our program $(ClusterId) $(Process)
@@ -24,7 +24,9 @@ Error                   = logs/err.$(ClusterId).$(Process)
 Output                  = logs/out.$(ClusterId).$(Process)
 Log                     = logs/log.$(ClusterId).$(Process)
 
-+ContainerOS="CentOS7"
++ContainerOS = "CentOS8"
++CephFS_IO   = "none"
++MaxRuntimeHours = 1
 
 Request_cpus = 2
 Request_memory = 2 GB
@@ -69,19 +71,19 @@ for num in {1..10}; do
 done
 {% endhighlight %}
 
-> :exclamation: Please check that the shell script is executable - if not, run `chmod +x environment-info.sh`.
+> :exclamation: Please check that the shell script is executable --- if not, run `chmod +x environment-info.sh`.
 
 > :exclamation: Usually, you should test your code before. If a special environment is needed, you can do that in an interactive job, before firing off many jobs. In our case, just test the script on the submit node by running `./environment-info.sh` and check what happens.
 
 > :exclamation: Now, you can finally submit the job:
 {% highlight shell %}
-$ condor_submit CentOS7_simple.jdl
+$ condor_submit CentOS8_simple.jdl
 Submitting job(s)
 ERROR: Invalid log file: "/home/student00/htcondor-bonn/files/logs/log.44.0" (No such file or directory)
 {% endhighlight %}
 Please note that this fails!
 HTCondor usually performs a check whether the log files and other output files can be written before
-submitting the job. You can turn this off by adding `-disable` to the call to `condor_submit`, which speeds up submission - but then
+submitting the job. You can turn this off by adding `-disable` to the call to `condor_submit`, which speeds up submission --- but then
 the jobs will go into `HOLD` state in case the files can not be written on the submit node. 
 
 So you will want to fix the problem:
@@ -90,7 +92,7 @@ mkdir logs
 {% endhighlight %}
 Now, please try again:
 {% highlight shell %}
-$ condor_submit CentOS7_simple.jdl
+$ condor_submit CentOS8_simple.jdl
 Submitting job(s).
 1 job(s) submitted to cluster 46.
 {% endhighlight %}

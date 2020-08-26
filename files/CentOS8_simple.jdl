@@ -11,7 +11,9 @@ Error                   = logs/err.$(ClusterId).$(Process)
 Output                  = logs/out.$(ClusterId).$(Process)
 Log                     = logs/log.$(ClusterId).$(Process)
 
-+ContainerOS="CentOS7"
++ContainerOS = "CentOS8"
++CephFS_IO   = "none"
++MaxRuntimeHours = 1
 
 Request_cpus = 2
 Request_memory = 2 GB
