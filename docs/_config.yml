@@ -22,3 +22,16 @@ plugins:
 relative_links:
   enabled:     true
   collections: true
+
+exclude:
+  - "Gemfile"
+  - "Gemfile.lock"
+  - "node_modules"
+  - "vendor/bundle/"
+  - "vendor/cache/"
+  - "vendor/gems/"
+  - "vendor/ruby/"
+  - "*.backup"
+  - "_exercises/*.backup"
+  - "*~"
+  - "_exercises/*~"
