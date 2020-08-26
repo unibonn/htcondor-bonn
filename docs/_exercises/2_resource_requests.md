@@ -16,25 +16,27 @@ in the interactive job example.
 
 These are default resource requests which can be configured as part of the HTCondor configuration on the submission machine. In case different resources are required, you should specify these.
 
-However, adding more and more parameters to `condor_submit -interactive` is not really feasible. To define your requests, it is easier to create a file containing these requests and hand that to `condor_submit`. In our course, we commonly use the file exension `jdl` to indicate the file is written in the `job description language` (which is basically just a collection of attributes being merged into the Job ClassAd).
+However, as already noted before, adding more and more parameters to `condor_submit -interactive` is not really feasible. To define your requests, it is easier to create a file containing these requests and hand that to `condor_submit`. In our course, we commonly use the file extension `jdl` to indicate the file is written in the `job description language` (which is basically just a collection of attributes being merged into the Job ClassAd).
 
 An example could be the following:
 
 {% highlight shell %}
-JobBatchName = SL6_interactive
-+ContainerOS = "SL6"
+JobBatchName = Debian10_interactive
++ContainerOS = "Debian10"
++CephFS_IO   = "none"
++MaxRuntimeHours = 6
 Request_cpus = 2
 Request_memory = 2 GB
 Request_disk = 100 MB
 Queue
 {% endhighlight %}
 
-> :exclamation: Save this into a file of your choosing or use the file `SL6_interactive.jdl` from the repository, and submit it as shown here:
+> :exclamation: Save this into a file of your choosing or use the file `Debian10_interactive.jdl` from the repository, and submit it as shown here:
 {% highlight shell %}
-$ condor_submit -interactive SL6_interactive.jdl
+$ condor_submit -interactive Debian10_interactive.jdl
 Submitting job(s).
 1 job(s) submitted to cluster 40.
-Welcome to slot1_1@htcondor-t-wn-0!
+Welcome to slot1_1@wn001!
 You requested 2 core(s), 2048 MB RAM, 102400 kB disk space.
 {% endhighlight %}
 

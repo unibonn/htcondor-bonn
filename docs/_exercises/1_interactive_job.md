@@ -21,6 +21,8 @@ You requested 1 core(s), 512 MB RAM, 35 kB disk space.
 
 The `append` parameter causes the given content to be appended to the job ClassAd. The special character `+` identifies this attribute as a custom attribute. There are several special attributes we require for jobs in Bonn, which we will describe now in detail. Note other clusters may have different special attributes (or none at all), since HTCondor can be extended as required for cluster operations and user requirements.
 
+Note that specifying extra attributes on a cluster not supporting them will usually have no effect --- they will just not be evaluated.
+
 ## `ContainerOS`
 This specifies the environment you want to use. We use the latest upstream base images and extend them with site-specifics and software either asked for by users or required by experiments. We offer several of these:
 
@@ -56,5 +58,9 @@ This specifies how long the job is allowed to execute (in hours). A flag like th
 > :exclamation: Try to start an interactive job with different `ContainerOS` settings and check out your environment.
 
 > :bulb: If you are familiar with Linux, you may want to check which kernel version you see inside the job (`uname -a`) and run `lsb_release -a` or view the contents of the file `/etc/os-release`.
+
+> :exclamation: Try to specify an unexpected / bad value for `CephFS_IO` or `MaxRuntimeHours`. What happens when you try to submit the job?
+
+> :bulb: Note that when you submit with a bad value for `ContainerOS`, your job will wait in the queue until a machine offering this `ContainerOS` appears, which does never happen for a bad value.
 
 {% include footer_exercises.html %}
