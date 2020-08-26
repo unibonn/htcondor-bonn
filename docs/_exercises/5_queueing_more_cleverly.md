@@ -35,10 +35,12 @@ For the course, I have added an additional file `demo_mini_movie.pov` and a `ren
 Again, we need a file to describe our job, and an actual job payload. We will use a flexible job payload
 (a shell script taking parameters) and use a single job description file for all scenes.
 
-> :exclamation: Save the following into a file of your choosing or use the file `Ubuntu1804_render_scenes.jdl` from the repository.
+> :exclamation: Save the following into a file of your choosing or use the file `Debian10_render_scenes.jdl` from the repository.
 {% highlight shell %}
-JobBatchName = Ubuntu1804_render_scenes
-+ContainerOS = "Ubuntu1804"
+JobBatchName = Debian10_render_scenes
++ContainerOS = "Debian10"
++CephFS_IO   = "none"
++MaxRuntimeHours = 1
 
 Scene = $Fdb(ScenePath)
 
@@ -87,7 +89,7 @@ As you might guess, `$Something()` is the syntax of a built-in function. You wil
 
 > :exclamation: As soon as everything is understood and you know what to expect, it is time to submit the jobs:
 {% highlight shell %}
-$ condor_submit Ubuntu1804_render_scenes.jdl
+$ condor_submit Debian10_render_scenes.jdl
 Submitting job(s)..
 2 job(s) submitted to cluster 98.
 {% endhighlight %}

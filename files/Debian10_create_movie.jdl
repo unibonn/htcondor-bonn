@@ -1,5 +1,7 @@
-JobBatchName = Ubuntu1804_render_movie_frames
-+ContainerOS = "Ubuntu1804"
+JobBatchName = Debian10_create_movie
++ContainerOS = "Debian10"
++CephFS_IO   = "none"
++MaxRuntimeHours = 1
 
 if defined Scene
 	Scene=$(Scene)
@@ -8,17 +10,17 @@ else
 	#Scene="dice"
 endif
 
-Executable=render_pov_movie.sh
+Executable=create_pov_movie.sh
 Arguments = $(Scene) $(Process)
 
-Transfer_input_files = povray/$(Scene)
-Transfer_output_files = render_results_$(Scene)
+Transfer_input_files = render_results_$(Scene)
+Transfer_output_files = $(Scene).mp4
 
 Error                   = logs/err.$(ClusterId).$(Process)
 Output                  = logs/out.$(ClusterId).$(Process)
 Log                     = logs/log.$(ClusterId).$(Process)
 
-Request_cpus = 1
+Request_cpus = 4
 Request_memory = 500 MB
 Request_disk = 100 MB
-Queue 100
+Queue 1

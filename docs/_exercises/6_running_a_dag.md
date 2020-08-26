@@ -19,10 +19,12 @@ the second type of job takes the produced images and creates a movie file from t
 This job is actually very similar to the job we used in the previous exercise. The only added parts are some different quality settings
 to speed up the rendering, and the actual animation.
 
-> :exclamation: Save the following into a file of your choosing or use the file `Ubuntu1804_render_movie_frames.jdl` from the repository.
+> :exclamation: Save the following into a file of your choosing or use the file `Debian10_render_movie_frames.jdl` from the repository.
 {% highlight shell %}
-JobBatchName = Ubuntu1804_render_movie_frames
-+ContainerOS = "Ubuntu1804"
+JobBatchName = Debian10_render_movie_frames
++ContainerOS = "Debian10"
++CephFS_IO   = "none"
++MaxRuntimeHours = 1
 
 if defined Scene
         Scene=$(Scene)
@@ -68,10 +70,12 @@ mv video*.png ../${RESULTDIR}
 
 ## The second kind of job: Creating the movie
 
-> :exclamation: Save the following into a file of your choosing or use the file `Ubuntu1804_create_movie.jdl` from the repository.
+> :exclamation: Save the following into a file of your choosing or use the file `Debian10_create_movie.jdl` from the repository.
 {% highlight shell %}
-JobBatchName = Ubuntu1804_create_movie
-+ContainerOS = "Ubuntu1804"
+JobBatchName = Debian10_create_movie
++ContainerOS = "Debian10"
++CephFS_IO   = "none"
++MaxRuntimeHours = 1
 
 if defined Scene
         Scene=$(Scene)
@@ -119,10 +123,10 @@ In the end, only this file will be submitted and take care of running the JDL fi
 To reduce the computational effort, everybody should render only one movie at first (if there is time, feel free to submit the second!).
 For this reason, two alternative DAG files are prepared:
 
-> :exclamation: The first file has the following content and is available from the repository under the name `Ubuntu1804_render_movie_dice.dag`.
+> :exclamation: The first file has the following content and is available from the repository under the name `Debian10_render_movie_dice.dag`.
 {% highlight shell %}
-Job render_frames Ubuntu1804_render_movie_frames.jdl
-Job make_video Ubuntu1804_create_movie.jdl
+Job render_frames Debian10_render_movie_frames.jdl
+Job make_video Debian10_create_movie.jdl
 
 VARS render_frames Scene="dice"
 VARS make_video Scene="dice"
@@ -130,10 +134,10 @@ VARS make_video Scene="dice"
 PARENT render_frames CHILD make_video
 {% endhighlight %}
 
-> :exclamation: The second file has the following content and is available from the repository under the name `Ubuntu1804_render_movie_mini_demo.dag`.
+> :exclamation: The second file has the following content and is available from the repository under the name `Debian10_render_movie_mini_demo.dag`.
 {% highlight shell %}
-Job render_frames Ubuntu1804_render_movie_frames.jdl
-Job make_video Ubuntu1804_create_movie.jdl
+Job render_frames Debian10_render_movie_frames.jdl
+Job make_video Debian10_create_movie.jdl
 
 VARS render_frames Scene="mini_demo"
 VARS make_video Scene="mini_demo"
@@ -151,14 +155,14 @@ PARENT render_frames CHILD make_video
 
 > :exclamation: Submit the job as follows and check what happens:
 {% highlight shell %}
-$ condor_submit_dag Ubuntu1804_render_movie_mini_demo.dag
+$ condor_submit_dag Debian10_render_movie_mini_demo.dag
 
 -----------------------------------------------------------------------
-File for submitting this DAG to HTCondor           : Ubuntu1804_render_movie_mini_demo.dag.condor.sub
-Log of DAGMan debugging messages                 : Ubuntu1804_render_movie_mini_demo.dag.dagman.out
-Log of HTCondor library output                     : Ubuntu1804_render_movie_mini_demo.dag.lib.out
-Log of HTCondor library error messages             : Ubuntu1804_render_movie_mini_demo.dag.lib.err
-Log of the life of condor_dagman itself          : Ubuntu1804_render_movie_mini_demo.dag.dagman.log
+File for submitting this DAG to HTCondor           : Debian10_render_movie_mini_demo.dag.condor.sub
+Log of DAGMan debugging messages                 : Debian10_render_movie_mini_demo.dag.dagman.out
+Log of HTCondor library output                     : Debian10_render_movie_mini_demo.dag.lib.out
+Log of HTCondor library error messages             : Debian10_render_movie_mini_demo.dag.lib.err
+Log of the life of condor_dagman itself          : Debian10_render_movie_mini_demo.dag.dagman.log
 
 Submitting job(s).
 1 job(s) submitted to cluster 99.

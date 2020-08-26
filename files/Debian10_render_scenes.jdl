@@ -1,5 +1,7 @@
-JobBatchName = Ubuntu1804_render_scenes
-+ContainerOS = "Ubuntu1804"
+JobBatchName = Debian10_render_scenes
++ContainerOS = "Debian10"
++CephFS_IO   = "none"
++MaxRuntimeHours = 1
 
 Scene = $Fdb(ScenePath)
 
