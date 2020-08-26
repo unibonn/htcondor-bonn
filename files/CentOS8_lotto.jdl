@@ -13,7 +13,9 @@ Log                     = logs/log.$(ClusterId).$(Process)
 
 Transfer_Output_Files   = lotto_results
 
-+ContainerOS="CentOS7"
++ContainerOS = "CentOS8"
++CephFS_IO   = "none"
++MaxRuntimeHours = 1
 
 Request_cpus = 1
 Request_memory = 1 GB
