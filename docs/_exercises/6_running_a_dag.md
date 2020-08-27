@@ -187,7 +187,7 @@ condor_userprio -allusers -all
 {% endhighlight %}
 > :exclamation: Also check out the log file produced by dagman!
 
-> :leopard: Check out the man pages or the HTCondor documentation - can you find more interesting parameters?
+> :leopard: Check out the man pages or the HTCondor documentation --- can you find more interesting parameters?
 
 > :leopard: You may want to play with priorities and resource requests for jobs which are still waiting in the queue (you can only rank your own jobs against each other!). Helpful commands could be (for a job id `72.0` and cluster id `72`):
 {% highlight shell %}
@@ -215,5 +215,6 @@ How does the quality compare to the still images we rendered before?
 > You can check and adapt the render settings in the corresponding `.ini` file. Note that quality setting `9` takes significantly longer than any lower setting.
 > For the `mini_demo` scene, you will also find that two different POV-Ray files are used. Check out the differences using `diff` and choose some settings in between!
 > During re-rendering, remember to also check `condor_userprio` to see how priorities are evolving.
+> Note that there are also `hq` versions of the scripts and `.jdl` files, which are not referenced by the DAG files. These produce much better quality, but will use **significant** resources also on a large cluster, so please be aware of that before running them. Remember that jobs also affect your user priority!
 
 {% include footer_exercises.html %}
