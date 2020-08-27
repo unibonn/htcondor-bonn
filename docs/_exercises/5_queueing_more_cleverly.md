@@ -79,7 +79,7 @@ mv ${SCENE}.png ..
 > :exclamation: First, take a look at the job description file. Can you understand how it works? Some helpful pointers follow.
 
 In general, if the syntax is unclear, you may want to check out the HTCondor documentation.
-In the course, we are using version `8.6.13` (there are still bugs in more recent versions concerning execution of Singularity containers). You can check that with `condor_q -version`.
+You can check the HTCondor version used on your submission machine with `condor_q -version`.
 
 For example, to get an explanation on what the strange magic line `Scene = $Fdb(ScenePath)` is doing, it is best to start from the [HTCondor web page](https://research.cs.wisc.edu/htcondor/),
 since links to the HTCondor documentation are sadly not stable yet[^1].
@@ -94,7 +94,7 @@ Submitting job(s)..
 2 job(s) submitted to cluster 98.
 {% endhighlight %}
 
-These jobs may run for a little while, so let's take the time to check on them! POV-Ray produces some progress output on `STDERR`. You can access that live from your submit machine using (with `98.0` being the first job's id):
+These jobs may run for a little while, so let's take the time to check on them![^2] POV-Ray produces some progress output on `STDERR`. You can access that live from your submit machine using (with `98.0` being the first job's id):
 {% highlight shell %}
 $ condor_tail -no-stdout -stderr -f 98.0
 Rendered 105472 of 480000 pixels (21%)
@@ -167,5 +167,6 @@ condor_submit 'Debugging=true' analysis.jdl
 :question: Do you have an example use case in mind? Feel free to ask questions!
 
 [^1]: A very much improved online documentation is part of the HTCondor 8.8 series.
+[^2]: If they finish too fast, you will also find a `Debian10_render_scenes_hq.jdl` in the repository. Note that this requires significantly more resources, so please only use that if the normal jobs are too short for investigating their behaviour.
 
 {% include footer_exercises.html %}
