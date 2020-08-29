@@ -166,6 +166,16 @@ condor_submit 'Debugging=true' analysis.jdl
 {% endhighlight %}
 :question: Do you have an example use case in mind? Feel free to ask questions!
 
+Another important attribute for your job description file is the possibility to remap the file names of input and output files. Imagine the program you use expects a specific input file name, and produces a hardcoded output filename. A simple workaround would be to write a job wrapper script which renames the files accordingly. However, you can also do this:
+{% highlight shell %}
+transfer_output_remap = "output.root=output/histograms_$(Process).root"
+{% endhighlight %}
+This would move the file `output.root` which is expected to be produced by the job in the working directory to the subdirectory `output/` on the execute machine when the job has finished, and give it a unique name by using the process ID. The same is possible for input files.
+
+Related to this, the `initialdir` setting effectively changes the directory before submitting the single job. This allows to prepare multiple sets of input files in different subdirectories on the submit machine, and to collect the logs and outputs in those subdirectories.
+
+:question: Do you have example use cases in mind? Again, feel free to ask questions!
+
 [^1]: A very much improved online documentation is part of the HTCondor 8.8 series.
 [^2]: If they finish too fast, you will also find a `Debian10_render_scenes_hq.jdl` in the repository. Note that this requires significantly more resources, so please only use that if the normal jobs are too short for investigating their behaviour.
 
