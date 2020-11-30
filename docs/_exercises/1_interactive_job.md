@@ -30,7 +30,6 @@ This specifies the environment you want to use. We use the latest upstream base 
 |:-------------------|:---------------------|
 | CentOS 8           | CentOS8              |
 | CentOS 7           | CentOS7              |
-| Scientific Linux 6 | SL6                  |
 | Debian 10          | Debian10             |
 | Ubuntu 18.04 LTS   | Ubuntu1804           |
 | Ubuntu 20.04 LTS   | Ubuntu2004           |
