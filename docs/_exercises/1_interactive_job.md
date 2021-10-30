@@ -9,7 +9,7 @@ To overcome this issue, containerization comes to the rescue and allows to selec
 Of course, you still need a way to interactively develop and test your program. This is the point at which an interactive job comes in. 
 
 {% highlight shell %}
-$ condor_submit -interactive -append '+ContainerOS = "CentOS7"' -append '+CephFS_IO = "none"' -append '+MaxRuntimeHours=12'
+$ condor_submit -interactive -append '+ContainerOS = "Rocky8"' -append '+CephFS_IO = "none"' -append '+MaxRuntimeHours=12'
 Submitting job(s).
 1 job(s) submitted to cluster 39.
 Welcome to slot1_1@wn001!
@@ -28,9 +28,10 @@ This specifies the environment you want to use. We use the latest upstream base 
 
 | Operating System   | Value of ContainerOS |
 |:-------------------|:---------------------|
-| CentOS 8           | CentOS8              |
 | CentOS 7           | CentOS7              |
+| Rocky Linux 8      | Rocky8               |
 | Debian 10          | Debian10             |
+| Debian 11          | Debian11             |
 | Ubuntu 18.04 LTS   | Ubuntu1804           |
 | Ubuntu 20.04 LTS   | Ubuntu2004           |
 

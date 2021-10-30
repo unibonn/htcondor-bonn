@@ -7,7 +7,7 @@ In this example, we will focus on how to get input files into our jobs, and how 
 
 Again, we need a file to describe our job, and an actual job payload.
 
-> :exclamation: Save the following into a file of your choosing or use the file `CentOS8_lotto.jdl` from the repository.
+> :exclamation: Save the following into a file of your choosing or use the file `Rocky8_lotto.jdl` from the repository.
 {% highlight shell %}
 Executable = check_lotto.sh
 Arguments  = $(Process)
@@ -24,7 +24,7 @@ Log                     = logs/log.$(ClusterId).$(Process)
 
 Transfer_Output_Files   = lotto_results
 
-+ContainerOS = "CentOS8"
++ContainerOS = "Rocky8"
 +CephFS_IO   = "none"
 +MaxRuntimeHours = 1
 
@@ -63,7 +63,7 @@ done
 
 > :exclamation: Submit the job as follows and check what happens:
 {% highlight shell %}
-$ condor_submit CentOS7_lotto.jdl 
+$ condor_submit Rocky8_lotto.jdl 
 Submitting job(s)....................................................
 52 job(s) submitted to cluster 51.
 {% endhighlight %}

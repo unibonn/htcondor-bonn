@@ -13,7 +13,7 @@ Log                     = logs/log.$(ClusterId).$(Process)
 
 Transfer_Output_Files   = lotto_results
 
-+ContainerOS = "CentOS8"
++ContainerOS = "Rocky8"
 +CephFS_IO   = "none"
 +MaxRuntimeHours = 1
 
