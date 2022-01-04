@@ -1,15 +1,20 @@
-JobBatchName = Debian10_render_scenes
-+ContainerOS = "Debian10"
+JobBatchName = Debian11_render_movie_frames
++ContainerOS = "Debian11"
 +CephFS_IO   = "none"
 +MaxRuntimeHours = 1
 
-Scene = $Fdb(ScenePath)
+if defined Scene
+	Scene=$(Scene)
+else
+	Scene=mini_demo
+	#Scene="dice"
+endif
 
-Executable=render_pov_single_hq.sh
-Arguments = $(Scene)
+Executable=render_pov_movie.sh
+Arguments = $(Scene) $(Process)
 
 Transfer_input_files = povray/$(Scene)
-Transfer_output_files = $(Scene).png
+Transfer_output_files = render_results_$(Scene)
 
 Error                   = logs/err.$(ClusterId).$(Process)
 Output                  = logs/out.$(ClusterId).$(Process)
@@ -18,5 +23,4 @@ Log                     = logs/log.$(ClusterId).$(Process)
 Request_cpus = 8
 Request_memory = 2000 MB
 Request_disk = 100 MB
-
-Queue ScenePath matching dirs (povray/*)
+Queue 300

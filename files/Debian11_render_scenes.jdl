@@ -1,0 +1,22 @@
+JobBatchName = Debian11_render_scenes
++ContainerOS = "Debian11"
++CephFS_IO   = "none"
++MaxRuntimeHours = 1
+
+Scene = $Fdb(ScenePath)
+
+Executable=render_pov_single.sh
+Arguments = $(Scene)
+
+Transfer_input_files = povray/$(Scene)
+Transfer_output_files = $(Scene).png
+
+Error                   = logs/err.$(ClusterId).$(Process)
+Output                  = logs/out.$(ClusterId).$(Process)
+Log                     = logs/log.$(ClusterId).$(Process)
+
+Request_cpus = 4
+Request_memory = 1000 MB
+Request_disk = 100 MB
+
+Queue ScenePath matching dirs (povray/*)

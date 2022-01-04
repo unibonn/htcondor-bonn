@@ -1,5 +1,5 @@
-JobBatchName = Debian10_interactive
-+ContainerOS = "Debian10"
+JobBatchName = Debian11_interactive
++ContainerOS = "Debian11"
 +CephFS_IO   = "none"
 +MaxRuntimeHours = 6
 Request_cpus = 2

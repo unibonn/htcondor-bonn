@@ -21,8 +21,8 @@ However, as already noted before, adding more and more parameters to `condor_sub
 An example could be the following:
 
 {% highlight shell %}
-JobBatchName = Debian10_interactive
-+ContainerOS = "Debian10"
+JobBatchName = Debian11_interactive
++ContainerOS = "Debian11"
 +CephFS_IO   = "none"
 +MaxRuntimeHours = 6
 Request_cpus = 2
@@ -31,9 +31,9 @@ Request_disk = 100 MB
 Queue
 {% endhighlight %}
 
-> :exclamation: Save this into a file of your choosing or use the file `Debian10_interactive.jdl` from the repository, and submit it as shown here:
+> :exclamation: Save this into a file of your choosing or use the file `Debian11_interactive.jdl` from the repository, and submit it as shown here:
 {% highlight shell %}
-$ condor_submit -interactive Debian10_interactive.jdl
+$ condor_submit -interactive Debian11_interactive.jdl
 Submitting job(s).
 1 job(s) submitted to cluster 40.
 Welcome to slot1_1@wn001!
