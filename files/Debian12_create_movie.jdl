@@ -1,5 +1,5 @@
-JobBatchName = Debian11_create_movie
-+ContainerOS = "Debian11"
+JobBatchName = Debian12_create_movie
++ContainerOS = "Debian12"
 +CephFS_IO   = "none"
 +MaxRuntimeHours = 1
 

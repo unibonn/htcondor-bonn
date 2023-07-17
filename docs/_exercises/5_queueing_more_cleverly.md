@@ -35,10 +35,10 @@ For the course, I have added an additional file `demo_mini_movie.pov` and a `ren
 Again, we need a file to describe our job, and an actual job payload. We will use a flexible job payload
 (a shell script taking parameters) and use a single job description file for all scenes.
 
-> :exclamation: Save the following into a file of your choosing or use the file `Debian11_render_scenes.jdl` from the repository.
+> :exclamation: Save the following into a file of your choosing or use the file `Debian12_render_scenes.jdl` from the repository.
 {% highlight shell %}
-JobBatchName = Debian11_render_scenes
-+ContainerOS = "Debian11"
+JobBatchName = Debian12_render_scenes
++ContainerOS = "Debian12"
 +CephFS_IO   = "none"
 +MaxRuntimeHours = 1
 
@@ -89,7 +89,7 @@ As you might guess, `$Something()` is the syntax of a built-in function. You wil
 
 > :exclamation: As soon as everything is understood and you know what to expect, it is time to submit the jobs:
 {% highlight shell %}
-$ condor_submit Debian11_render_scenes.jdl
+$ condor_submit Debian12_render_scenes.jdl
 Submitting job(s)..
 2 job(s) submitted to cluster 98.
 {% endhighlight %}
@@ -177,6 +177,6 @@ Related to this, the `initialdir` setting effectively changes the directory befo
 :question: Do you have example use cases in mind? Again, feel free to ask questions!
 
 [^1]: A very much improved online documentation is part of the HTCondor 8.8 series.
-[^2]: If they finish too fast, you will also find a `Debian11_render_scenes_hq.jdl` in the repository. Note that this requires significantly more resources, so please only use that if the normal jobs are too short for investigating their behaviour.
+[^2]: If they finish too fast, you will also find a `Debian12_render_scenes_hq.jdl` in the repository. Note that this requires significantly more resources, so please only use that if the normal jobs are too short for investigating their behaviour.
 
 {% include footer_exercises.html %}

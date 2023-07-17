@@ -1,5 +1,5 @@
-Executable = environment-info.sh
-Arguments  = some Arguments for our program $(ClusterId) $(Process)
+Executable = check_lotto.sh
+Arguments  = $(Process)
 Universe   = vanilla
 
 # Specify files to be transferred (please note that files on a shared filesystem should not be transferred!!!)
@@ -7,16 +7,18 @@ Universe   = vanilla
 Transfer_executable     = True
 
 Error                   = logs/err.$(ClusterId).$(Process)
-#Input                  = input/in.$(ClusterId).$(Process)
+Input                   = lotto_sheets
 Output                  = logs/out.$(ClusterId).$(Process)
 Log                     = logs/log.$(ClusterId).$(Process)
 
-+ContainerOS = "Rocky8"
+Transfer_Output_Files   = lotto_results
+
++ContainerOS = "Rocky9"
 +CephFS_IO   = "none"
 +MaxRuntimeHours = 1
 
-Request_cpus = 2
-Request_memory = 2 GB
-Request_disk = 100 MB
+Request_cpus = 1
+Request_memory = 1 GB
+Request_disk = 10 MB
 
-Queue
+Queue 52

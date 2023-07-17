@@ -9,7 +9,7 @@ In our first simple example, we will go with a batch script which shows some inf
 
 We need two files:
 
-> :exclamation: Save the following into a file of your choosing or use the file `Rocky8_simple.jdl` from the repository.
+> :exclamation: Save the following into a file of your choosing or use the file `Rocky9_simple.jdl` from the repository.
 {% highlight shell %}
 Executable = environment-info.sh
 Arguments  = some Arguments for our program $(ClusterId) $(Process)
@@ -24,7 +24,7 @@ Error                   = logs/err.$(ClusterId).$(Process)
 Output                  = logs/out.$(ClusterId).$(Process)
 Log                     = logs/log.$(ClusterId).$(Process)
 
-+ContainerOS = "Rocky8"
++ContainerOS = "Rocky9"
 +CephFS_IO   = "none"
 +MaxRuntimeHours = 1
 
@@ -77,7 +77,7 @@ done
 
 > :exclamation: Now, you can finally submit the job:
 {% highlight shell %}
-$ condor_submit Rocky8_simple.jdl
+$ condor_submit Rocky9_simple.jdl
 Submitting job(s)
 ERROR: Invalid log file: "/home/student00/htcondor-bonn/files/logs/log.44.0" (No such file or directory)
 {% endhighlight %}
@@ -92,7 +92,7 @@ mkdir logs
 {% endhighlight %}
 Now, please try again:
 {% highlight shell %}
-$ condor_submit Rocky8_simple.jdl
+$ condor_submit Rocky9_simple.jdl
 Submitting job(s).
 1 job(s) submitted to cluster 46.
 {% endhighlight %}
