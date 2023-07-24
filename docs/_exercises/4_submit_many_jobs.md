@@ -70,6 +70,8 @@ Submitting job(s)....................................................
 
 > :question: What is happening? Where do you expect to find files on your submit machine?
 
+> :exclamation: While the jobs are still running or idling in the queue, execute `condor_watch_q`. What does this tool show?
+
 ## Check out your results
 Ignoring any special rules, you basically win something if at least 3 numbers were guessed correctly.
 Did you win something?

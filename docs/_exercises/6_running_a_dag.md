@@ -176,6 +176,7 @@ Submitting job(s).
 condor_q
 condor_q -nobatch
 watch -n 10 condor_q -nobatch
+condor_watch_q
 condor_q -nobatch -dag
 condor_q -constraint 'JobStatus == 2' -af:hj Cmd ResidentSetSize_RAW RequestMemory DiskUsage_RAW RequestDisk
 condor_history -constraint 'JobStatus == 4' -af:hj Cmd ResidentSetSize_RAW RequestMemory DiskUsage_RAW RequestDisk
