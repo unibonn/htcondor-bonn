@@ -10,7 +10,7 @@ else
 	#Scene="dice"
 endif
 
-Executable=render_pov_movie.sh
+Executable=render_pov_movie_hq.sh
 Arguments = $(Scene) $(Process)
 
 Transfer_input_files = povray/$(Scene)
