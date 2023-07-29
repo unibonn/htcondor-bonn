@@ -188,7 +188,22 @@ condor_userprio -allusers -all
 {% endhighlight %}
 > :exclamation: Also check out the log file produced by dagman!
 
-> :leopard: Check out the man pages or the HTCondor documentation --- can you find more interesting parameters?
+Note that `condor_watch_q` will prove quite useful especially to check on the status of complicated DAGs. It will present output such as:
+{% highlight shell %}
+BATCH                                   IDLE  RUN  DONE  TOTAL  JOB_IDS 
+Debian12_render_movie_mini_demo.dag+8     -   87   213    300   9.186 ... 9.299  [#######################################################======================]
+Debian12_render_movie_dice.dag+10       247   36    17    300   11.100 ... 11.99 [####=========----------------------------------------------------------------]
+
+[#############################===============---------------------------------]
+
+Total: 600 jobs; 230 completed, 247 idle, 123 running
+
+Updated at 2023-07-29 22:38:37
+Input ^C to exit
+{% endhighlight %}
+:bulb: Please note that `condor_watch_q` may require a restart to become aware of new job clusters.
+
+> :leopard: Check out the man pages or the HTCondor documentation --- can you find more interesting parameters of jobs?
 
 > :leopard: You may want to play with priorities and resource requests for jobs which are still waiting in the queue (you can only rank your own jobs against each other!). Helpful commands could be (for a job id `72.0` and cluster id `72`):
 {% highlight shell %}
